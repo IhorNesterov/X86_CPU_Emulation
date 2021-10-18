@@ -1,6 +1,7 @@
 #include <iostream>
 #include <bitset>
 #include <string>
+#include <fstream>
 #include "CPU.h"
 #include "Compiler.h"
 
@@ -9,20 +10,14 @@ using namespace std;
 int main(void)
 {
 	int a = 0;
-
 	string input;
 	Mem* RAMmemory = new Mem(1024);
 	FlashMem* Flashmemory = new FlashMem(1024);
-	uint16_t* comm = new uint16_t[3];
 	CPU* cpu = new CPU(RAMmemory, Flashmemory);
+	Flashmemory->LoadCodeFile("C:\\1\\Code.txt");
 
-
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 11; i++)
 	{
-		getline(cin,input);
-		comm = GetInstructionFromString(input);
-		Flashmemory->SetInstructrion(a, comm[0], comm[1], comm[2]);
-		a += 3;
 		cpu->Work();
 	}
 	cin >> a;

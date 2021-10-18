@@ -130,7 +130,7 @@ uint16_t DeEncryptOperandFromString(string input)
 
 string* ParseString(string input)
 {
-	string* result = new string[3];
+	string* result = new string[4];
 	int pos = 0;
 	for (int i = 0; i < size(input); ++i)
 	{
@@ -148,11 +148,12 @@ string* ParseString(string input)
 
 uint16_t* GetInstructionFromString(string input)
 {
-	uint16_t result[3];
-	string* operands = new string[3];
+	uint16_t result[4];
+	string* operands = new string[4];
 	operands = ParseString(input);
-	result[0] = DeEncryptIpCommandFromString(operands[0]);
-	result[1] = DeEncryptOperandFromString(operands[1]);
+	result[0] = stoi(operands[0]);
+	result[1] = DeEncryptIpCommandFromString(operands[1]);
 	result[2] = DeEncryptOperandFromString(operands[2]);
+	result[3] = DeEncryptOperandFromString(operands[3]);
 	return result;
 }
